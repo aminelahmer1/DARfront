@@ -1,0 +1,20 @@
+<div class="announcement-list">
+    <button mat-button (click)="openAddDialog()">Ajouter une Annonce</button>
+    <div class="grid-container">
+      <div class="grid-item" *ngFor="let announcement of announcements">
+        <h3>{{ announcement.title }}</h3>
+        <p>{{ announcement.description }}</p>
+        <p><strong>Date:</strong> {{ announcement.date }}</p>
+        <p><strong>Prix:</strong> {{ announcement.prix }}</p>
+        <p><strong>Type:</strong> {{ announcement.type_announcement }}</p>
+        <p><strong>Code Postal:</strong> {{ announcement.codePostal }}</p>
+        <p><strong>Ville:</strong> {{ announcement.ville }}</p>
+        <p><strong>Adresse:</strong> {{ announcement.adresse }}</p>
+        <p><strong>Gouvernorat:</strong> {{ announcement.gouvernorat }}</p>
+        <p><strong>Phone Number:</strong> {{ announcement.PhoneNumber }}</p>
+        <img [src]="announcement.imagePath" alt="Image" *ngIf="announcement.imagePath">
+
+      </div>
+    </div>
+  </div>
+  

@@ -1,0 +1,18 @@
+
+button{
+    background-color: #3633CD;
+}
+
+/* styles.css */
+
+.custom-button {
+    background-color: #FF6B6B; /* Couleur orangé magma */
+    border-color: #FF6B6B; /* Couleur de bordure */
+  }
+  
+  .custom-button:hover {
+    background-color: #E94560; /* Couleur orangé magma au survol */
+    border-color: #E94560; /* Couleur de bordure au survol */
+  }
+  
+

@@ -1,0 +1,57 @@
+<h1 mat-dialog-title>Ajouter une Annonce</h1>
+<div mat-dialog-content>
+  <form (ngSubmit)="onSubmit()" enctype="multipart/form-data">
+    <mat-form-field>
+      <mat-label>Title</mat-label>
+      <input matInput [(ngModel)]="announcement.title" name="title" required>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Description</mat-label>
+      <input matInput [(ngModel)]="announcement.description" name="description" required>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Date</mat-label>
+      <input matInput [(ngModel)]="announcement.date" name="date" required>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Prix</mat-label>
+      <input matInput [(ngModel)]="announcement.prix" name="prix" required>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Type</mat-label>
+      <input matInput [(ngModel)]="announcement.type_announcement" name="type_announcement" required>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Code Postal</mat-label>
+      <input matInput [(ngModel)]="announcement.codePostal" name="codePostal" required>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Ville</mat-label>
+      <input matInput [(ngModel)]="announcement.ville" name="ville" required>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Adresse</mat-label>
+      <input matInput [(ngModel)]="announcement.adresse" name="adresse" required>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Gouvernorat</mat-label>
+      <input matInput [(ngModel)]="announcement.gouvernorat" name="gouvernorat" required>
+    </mat-form-field>
+    
+    <mat-form-field>
+    <mat-label>Phone number</mat-label>
+    <input matInput [(ngModel)]="announcement.PhoneNumber" name="Phone number" required>
+</mat-form-field>
+    <mat-form-field>
+      <mat-label>Image</mat-label>
+      <input type="file" (change)="onFileChanged($event)" required>
+    </mat-form-field>
+    <div *ngIf="imagePreview">
+      <img [src]="imagePreview" alt="Image Preview" style="max-width: 100%; height: auto; margin-top: 10px;">
+    </div>
+    <button mat-button type="submit">Ajouter</button>
+  </form>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onClose()">Fermer</button>
+</div>

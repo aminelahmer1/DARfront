@@ -1,0 +1,78 @@
+<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: black;">
+    <div class="container">
+
+
+        <a class="navbar-brand">
+
+            Festava Live
+        </a>
+
+       
+
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav align-items-lg-center ms-auto me-lg-5">
+                <li class="nav-item">
+
+
+                    <a class="nav-link click-scroll" href="front">Home</a>
+
+
+
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link click-scroll" href="#section_2">About</a>
+                </li>
+
+
+                <!-- Display the "FeedBack And Result" link only if the user is logged in and has the role of evaluator -->
+                <li class="nav-item" *ngIf="isLoggedIn">
+                    <a class="nav-link click-scroll" href="#section_3" routerLink="/affichage">FeedBack And Result</a>
+                </li>
+
+
+                <a class="nav-item" *ngIf="isLoggedIn" [routerLink]="['/galaxydance/vote']" aria-expanded="false">
+                    
+                    <span class="hide-menu">Vote Now</span>
+                  </a>
+             
+
+
+
+                <li class="nav-item">
+                    <a class="nav-link click-scroll" href="#section_4">Schedule</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link click-scroll" href="#section_5">Pricing</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link click-scroll" href="#section_6">Contact</a>
+                </li>
+
+
+
+                <!-- Display only if the user is an admin -->
+                <li class="nav-item" *ngIf="isAdmin">
+                    <a class="nav-link click-scroll" href="admin">ADMIN</a>
+                </li>
+            </ul>
+
+            <!-- Display the login and sign up buttons only if the user is not logged in -->
+            <a *ngIf="!isLoggedIn" href="login" class="btn custom-btn d-lg-block d-none">Login</a>
+            <a *ngIf="!isLoggedIn" href="register" class="btn custom-btn d-lg-block d-none">Sign up</a>
+
+            <!-- Display the logout button only if the user is logged in -->
+            <button *ngIf="isLoggedIn" class="btn custom-btn d-lg-block d-none" (click)="logout()">Logout</button>
+        </div>
+    </div>
+</nav>
+
+

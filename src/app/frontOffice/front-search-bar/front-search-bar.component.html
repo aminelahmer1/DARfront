@@ -1,0 +1,31 @@
+<section class="search-section">
+    <div class="container">
+        <form [formGroup](ngSubmit)="onSubmit()" class="search-form">
+            
+            <input type="date" formControlName="date_event" placeholder="Event Date" class="mat-input">
+            <input type="text" formControlName="name_event" placeholder="Event Name" class="mat-input">
+            
+            <input type="text" formControlName="regulations" placeholder="Event Regulations" class="mat-input">
+            <input type="number" formControlName="nb_competitions" placeholder="Number of Competitions" class="mat-input">
+            
+            <input type="number" formControlName="public_capacity" placeholder="Public Capacity" class="mat-input">
+            <input type="text" formControlName="sound_system_event" placeholder="Sound System Event" class="mat-input">
+            <select formControlName="typeevent" placeholder="Event Type" class="mat-select">
+                <option value="">Select Event Type</option>
+                <option value="FINAL">FINAL</option>
+                <option value="SEMIFINAL">SEMIFINAL</option>
+                <option value="CULTURAL">CULTURAL</option>
+                <option value="EXPLORER">EXPLORER</option>
+
+
+                <!-- Ajoutez des options supplémentaires en fonction de vos types d'événements -->
+            
+            </select>
+            <label for="kids" class="mat-checkbox-label">Kids Allowed:</label>
+            <input type="checkbox" formControlName="kids" class="mat-checkbox">
+            <button type="submit" class="mat-button mat-primary">Search</button>
+            
+            
+        </form>
+    </div>
+</section>

@@ -1,0 +1,58 @@
+
+<link rel="shortcut icon" type="image/png" href="/assets/BackOffice/images/logos/favicon.png" />
+
+<link rel="stylesheet" href="/assets/BackOffice/css/styles.min.css" />
+<div class="layout-wrapper layout-content-navbar">
+    <div class="layout-container">
+  
+        
+      
+        <div class="title-container">
+            <h2 class="title">List of Users</h2>
+          </div>
+          <div>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Firstname</th>
+                  <th>LastName</th>
+                  <th>Email</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let user of users">
+                  <td>{{ user.firstname }}</td>
+                  <td>{{ user.lastname }}</td>
+                  <td>{{ user.email }}</td>
+                  <td>
+                    <div>
+                      <input type="number" [(ngModel)]="banDuration[user.id]" placeholder="Ban Duration (days)">
+                      <button (click)="banUser(user.email, banDuration[user.id])">Ban User</button>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          
+  <!-- Popup -->
+  <div class="popup" *ngIf="showPopup">
+      <div class="popup-content">
+          <p>{{ popupMessage }}</p>
+          <button class="close-button" (click)="closePopup()">Close</button>
+      </div>
+  </div>
+
+
+
+</div>
+</div>
+
+<script src="../assets/libs/jquery/dist/jquery.min.js"></script>
+<script src="../assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="../assets/js/sidebarmenu.js"></script>
+<script src="../assets/js/app.min.js"></script>
+<script src="../assets/libs/apexcharts/dist/apexcharts.min.js"></script>
+<script src="../assets/libs/simplebar/dist/simplebar.js"></script>
+<script src="../assets/js/dashboard.js"></script>

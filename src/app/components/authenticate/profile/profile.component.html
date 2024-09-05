@@ -1,0 +1,49 @@
+
+<!-- Tout les fichiers CSS -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@100;200;400;700&display=swap">
+<link rel="stylesheet" href="/assets/FrontOffice/assets/css/bootstrap.min.css">
+<link rel="stylesheet" href="/assets/FrontOffice/assets/css/bootstrap-icons.css">
+<link rel="stylesheet" href="/assets/FrontOffice/assets/css/templatemo-festava-live.css">
+
+<app-headerfront></app-headerfront>      
+<app-navbarcomponentfront></app-navbarcomponentfront> 
+<div class="container" *ngIf="currentUser; else loggedOut">
+    <header class="jumbotron">
+      <h3>
+        <strong>{{ currentUser.username }}</strong> Profile
+      </h3>
+    </header>
+    <p>
+      <strong>Email:</strong>
+      {{ currentUser.email }}
+    </p>
+    <strong>Roles:</strong>
+    <ul>
+      <li *ngFor="let role of currentUser.roles">
+        {{ role }}
+      </li>
+    </ul>
+  </div>
+  
+  <ng-template #loggedOut>
+    Please login.
+  </ng-template>
+
+  <app-footerfront></app-footerfront>
+
+    
+
+  
+
+
+
+
+  <!-- tout les fichiers javaScript mawjoudon houni -->
+  
+  <script src="/assets/FrontOffice/assets/js/jquery.min.js"></script>
+  <script src="/assets/FrontOffice/assets/js/bootstrap.min.js"></script>
+  <script src="/assets/FrontOffice/assets/js/jquery.sticky.js"></script>
+  <script src="/assets/FrontOffice/assets/js/click-scroll.js"></script>
+  <script src="/assets/FrontOffice/assets/js/custom.js"></script>

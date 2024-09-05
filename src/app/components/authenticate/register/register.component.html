@@ -1,0 +1,128 @@
+
+<!-- Tout les fichiers CSS -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@100;200;400;700&display=swap">
+<link rel="stylesheet" href="/assets/FrontOffice/assets/css/bootstrap.min.css">
+<link rel="stylesheet" href="/assets/FrontOffice/assets/css/bootstrap-icons.css">
+<link rel="stylesheet" href="/assets/FrontOffice/assets/css/templatemo-festava-live.css">
+
+<app-headerfront></app-headerfront>      
+<app-navbarcomponentfront></app-navbarcomponentfront> 
+
+
+<div class="video-wrap">
+    <video autoplay loop muted class="custom-video" poster="">
+      <source src="/assets/FrontOffice/assets/video/pexels-2022395.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+    <div class="overlay"></div>
+  </div>
+  
+
+<div class="container-fluid">
+    <div class="d-flex justify-content-center align-items-center">
+      <div *ngIf="!mfaRes" class="card">
+        <div class="card-header d-flex justify-content-center p-4">
+          <h5 class="card-title">Sign Up</h5>
+        </div>
+        <div class="card-body">
+          <form [formGroup]="registerForm" (ngSubmit)="register()">
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="lastname">Last Name</label>
+                  <input type="text" class="form-control" formControlName="lastname" placeholder="Last Name" aria-label="Last Name" aria-describedby="lastName">
+                </div>
+                <div class="form-group">
+                  <label for="firstname">First Name</label>
+                  <input type="text" class="form-control" formControlName="firstname" placeholder="First Name" aria-label="First Name" aria-describedby="firstname">
+                </div>
+                <div class="form-group">
+                  <label for="email">E-Mail</label>
+                  <input type="text" class="form-control" formControlName="email" placeholder="Email" aria-label="Email" aria-describedby="email">
+                </div>
+                <div class="form-group">
+                  <label for="paswd">Password</label>
+                  <input type="password" class="form-control" formControlName="paswd" placeholder="Password" aria-label="Password" aria-describedby="password">
+                </div>
+                <div class="form-group">
+                  <label for="podepostal">Postal Code</label>
+                  <input type="text" class="form-control" formControlName="podepostal" placeholder="Postal Code" aria-label="Postal Code" aria-describedby="podepostal">
+                </div>
+                <div class="form-group">
+                  <label for="language">Language</label>
+                  <input type="text" class="form-control" formControlName="language" placeholder="Language" aria-label="Language" aria-describedby="language">
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="username">Username</label>
+                  <input type="text" class="form-control" formControlName="username" placeholder="Username" aria-label="Username" aria-describedby="username">
+                </div>
+                <div class="form-group">
+                  <label for="phonenumber">Phone Number</label>
+                  <input type="tel" class="form-control" formControlName="phonenumber" placeholder="Phone Number" aria-label="Phone Number" aria-describedby="phonenumber">
+                </div>
+                <div class="form-group">
+                  <label for="commune">Commune</label>
+                  <input type="text" class="form-control" formControlName="commune" placeholder="Commune" aria-label="Commune" aria-describedby="commune">
+                </div>
+                <div class="form-group">
+                  <label for="expertise">Expertise</label>
+                  <input type="text" class="form-control" formControlName="expertise" placeholder="Expertise" aria-label="Expertise" aria-describedby="expertise">
+                </div>
+                <div class="form-group">
+                  <label for="codepostal">Code Postal</label>
+                  <input type="text" class="form-control" formControlName="codepostal" placeholder="codepostal" aria-label="codepostal" aria-describedby="codepostal">
+                </div>
+                <div class="form-group">
+                  <label for="role">Role</label>
+                  <select formControlName="role" class="form-control" id="role" required>
+                    <option *ngFor="let role of roleTypes" [value]="role">{{ role }}</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="genderType">Gender</label>
+                  <select formControlName="genderType" class="form-control" id="genderType" required>
+                    <option *ngFor="let gender of genders" [value]="gender">{{ gender }}</option>
+                  </select>
+                </div>
+                <div class="form-check form-switch">
+                  <input class="form-check-input" formControlName="enableMfa" type="checkbox" role="switch" id="mfa" checked>
+                  <label class="form-check-label" for="mfa">Multi-Factor Authentication</label>
+                </div>
+              </div>
+            </div>
+            <div class="d-flex justify-content-center p-2">
+              <button type="button" [disabled]="!registerForm.valid" class="btn btn-primary" (click)="register()">Register
+                <div class="spinner-border text-secondary" *ngIf="isLoading" role="status">
+                  <span class="visually-hidden">Loading...</span>
+                </div>
+              </button>
+            </div>
+          </form>
+        </div>
+        <div class="card-footer d-flex justify-content-center p-4">
+          <a routerLink="/login" class="card-link">Already have an account?</a>
+        </div>
+      </div>
+      <div *ngIf="mfaRes">
+        <app-display-qr [qrCode]="mfaRes.qrCode" [qrCodeKey]="mfaRes.mfaCode" [username]="this.registerForm.controls['username'].value"></app-display-qr>
+      </div>
+    </div>
+  </div>
+  
+  
+    
+    
+      
+
+<app-footerfront></app-footerfront>
+
+<!-- Tout les fichiers JavaScript -->
+<script src="/assets/FrontOffice/assets/js/jquery.min.js"></script>
+<script src="/assets/FrontOffice/assets/js/bootstrap.min.js"></script>
+<script src="/assets/FrontOffice/assets/js/jquery.sticky.js"></script>
+<script src="/assets/FrontOffice/assets/js/click-scroll.js"></script>
+<script src="/assets/FrontOffice/assets/js/custom.js"></script>

@@ -1,0 +1,76 @@
+
+<!-- Tout les fichiers CSS -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@100;200;400;700&display=swap">
+<link rel="stylesheet" href="/assets/FrontOffice/assets/css/bootstrap.min.css">
+<link rel="stylesheet" href="/assets/FrontOffice/assets/css/bootstrap-icons.css">
+<link rel="stylesheet" href="/assets/FrontOffice/assets/css/templatemo-festava-live.css">
+
+<app-headerfront></app-headerfront>      
+<app-navbarcomponentfront></app-navbarcomponentfront> 
+
+<div class="video-wrap">
+    <video autoplay loop muted class="custom-video" poster="">
+      <source src="/assets/FrontOffice/assets/video/pexels-2022395.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+    <div class="overlay"></div>
+  </div>
+
+<div class="container-fluid">
+  <div class="d-flex justify-content-center align-items-center">
+      <div *ngIf="!response || !response.authValid" class="card">
+          <div class="card-header d-flex justify-content-center p-4">
+              <h5 class="card-title">Sign In</h5>
+          </div>
+          <div class="card-body">
+              <div *ngIf="message" class="alert alert-primary" role="alert">
+                  {{message}}
+                </div>
+              <form [formGroup]="loginForm">
+                  <div class="input-group mb-3">
+                      <span class="input-group-text" id="basic-addon1">Email</span>
+                      <input type="text" class="form-control" formControlName="email" placeholder="email"
+                          aria-label="email" aria-describedby="basic-addon1">
+                  </div>
+                  <div class="input-group mb-3">
+                      <span class="input-group-text" id="password">Password</span>
+                      <input type="password" class="form-control" formControlName="password" placeholder="Password"
+                          aria-label="Password" aria-describedby="password">
+                  </div>
+                  <div class="d-flex justify-content-center p-2">
+                      <button type="button" class="btn btn-primary" (click)="login()">Login</button>
+                  </div>
+              </form>
+
+          </div>
+          <div class="card-footer d-flex justify-content-center p-4">
+              <a routerLink="/register" class="card-link">Register</a>
+              <a href="#" class="card-link" (click)="forgotPassword($event)">Forgot password?</a>
+              <div *ngIf="popupMessage" class="popup">
+                <p>{{ popupMessage }}</p>
+              </div>
+              
+          </div>
+      </div>
+      <app-mfa *ngIf="response?.authValid && response?.mfaRequired" [email]="response.email"></app-mfa>
+  </div>
+</div>
+
+  <app-footerfront></app-footerfront>
+
+    
+
+  
+
+
+
+
+<!-- tout les fichiers javaScript mawjoudon houni -->
+
+<script src="/assets/FrontOffice/assets/js/jquery.min.js"></script>
+<script src="/assets/FrontOffice/assets/js/bootstrap.min.js"></script>
+<script src="/assets/FrontOffice/assets/js/jquery.sticky.js"></script>
+<script src="/assets/FrontOffice/assets/js/click-scroll.js"></script>
+<script src="/assets/FrontOffice/assets/js/custom.js"></script>
