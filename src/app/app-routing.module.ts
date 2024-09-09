@@ -18,9 +18,11 @@ import { ForgotPasswordComponent } from './forgot-password/forgot-password.compo
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { VerifyAccountComponent } from './verify-account/verify-account.component';
+import { ClientAnnouncementListComponent } from './announcement/client-announcement-list/client-announcement-list.component';
+
 
 const routes: Routes = [
-  { path: 'home', component: HomeComponent },
+  { path: 'home', component: AlltemplatefrontComponent },
   { path: 'login', component: LoginComponent },
   { path: 'forgot-password', component: ForgotPasswordComponent },
   { path: 'reset-password', component: ResetPasswordComponent },
@@ -31,7 +33,12 @@ const routes: Routes = [
   { path: 'admin', component: BoardAdminComponent },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'verify', component: VerifyAccountComponent },
+  { path: 'announcements', component: AnnouncementListComponent },
+  { path: 'add-announcement', component: AddAnnouncementComponent, canActivate: [AuthGuard] }, // Route protégée par le guard
+  { path: 'clientannouncements', component: ClientAnnouncementListComponent },
+  { path: '**', redirectTo: '/announcements' }
 ];
+
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]

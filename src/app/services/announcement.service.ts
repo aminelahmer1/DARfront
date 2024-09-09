@@ -28,12 +28,13 @@ export class AnnouncementService {
     return this.http.delete<void>(`${this.baseUrl}/deleteAnnouncement/${id}`);
   }
 
-  uploadImage(file: File): Observable<any> {
+  uploadImage(Id_announcement: number, file: File): Observable<string> {
     const formData: FormData = new FormData();
-    formData.append('file', file);
+    formData.append('file', file, file.name);
 
-    return this.http.post(`${this.baseUrl}/uploadImage`, formData, { responseType: 'text' });
+    return this.http.post<string>(`${this.baseUrl}/uploadImage/${Id_announcement}`, formData);
   }
+  
 
   uploadVideo(file: File): Observable<any> {
     const formData: FormData = new FormData();
@@ -45,4 +46,8 @@ export class AnnouncementService {
   getAnnouncementsByUserId(userId: number): Observable<Announcement[]> {
     return this.http.get<Announcement[]>(`${this.baseUrl}/api/announcements/user/${userId}`);
   }
+  getImageUrl(imagePath: string): string {
+    return `http://localhost:8081/announcement-images/${imagePath}`;
+  }
+  
 }

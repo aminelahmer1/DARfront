@@ -1,0 +1,76 @@
+.announcement-list {
+    text-align: center;
+    margin: 20px;
+  }
+  
+  .grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+    padding: 20px;
+  }
+  
+  .grid-item {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+  }
+  
+  .grid-item:hover {
+    transform: scale(1.05);
+  }
+  
+  .announcement-image {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 15px;
+  }
+  
+  button {
+    background-color: #d32f2f;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #c62828;
+  }
+  
+  h3 {
+    color: #333;
+  }
+  /* Dans styles.css ou un fichier CSS global */
+  
+  .custom-dialog-container {
+    position: fixed !important; /* Fixer la position pour centrer correctement */
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important; /* Centrage horizontal et vertical */
+    width: 100%; /* Assurer qu'il prend tout l'espace disponible */
+    max-width: 400px; /* Taille maximale du dialog */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5); /* Ombre pour un effet moderne */
+    border-radius: 10px; /* Coins arrondis */
+  }
+  
+  .custom-backdrop {
+    background-color: rgba(0, 0, 0, 0.7); /* Fond assombri */
+  }
+  
+  .mat-dialog-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  @media (max-width: 600px) {
+    .custom-dialog-container {
+      width: 90% !important; /* Réduire la largeur sur les petits écrans */
+    }
+  }
+  

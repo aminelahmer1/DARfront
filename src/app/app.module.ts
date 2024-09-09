@@ -39,7 +39,9 @@ import { ForgotPasswordComponent } from './forgot-password/forgot-password.compo
 import { LoginComponent } from './login/login.component';
 import { PopUpComponent } from './pop-up/pop-up.component';
 import { VerifyAccountComponent } from './verify-account/verify-account.component';
-
+import { ClientAnnouncementListComponent } from './announcement/client-announcement-list/client-announcement-list.component';
+import { ContactDialogComponent } from './announcement/contact-dialog/contact-dialog.component';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 @NgModule({
   declarations: [
     AppComponent,
@@ -73,6 +75,8 @@ import { VerifyAccountComponent } from './verify-account/verify-account.componen
     LoginComponent,
     PopUpComponent,
     VerifyAccountComponent,
+    ClientAnnouncementListComponent,
+    ContactDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -83,7 +87,8 @@ import { VerifyAccountComponent } from './verify-account/verify-account.componen
     MatDialogModule,
     MatFormFieldModule,
     MatInputModule,
-    HttpClientModule 
+    HttpClientModule,
+    DragDropModule 
   ],
   providers: [],
   bootstrap: [AppComponent],

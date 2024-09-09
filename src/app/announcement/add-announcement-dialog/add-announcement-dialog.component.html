@@ -1,57 +1,80 @@
 <h1 mat-dialog-title>Ajouter une Annonce</h1>
+
+<!-- Formulaire pour l'ajout d'une annonce -->
 <div mat-dialog-content>
   <form (ngSubmit)="onSubmit()" enctype="multipart/form-data">
-    <mat-form-field>
+
+    <!-- Titre -->
+    <mat-form-field appearance="outline">
       <mat-label>Title</mat-label>
       <input matInput [(ngModel)]="announcement.title" name="title" required>
     </mat-form-field>
-    <mat-form-field>
+
+    <!-- Description -->
+    <mat-form-field appearance="outline">
       <mat-label>Description</mat-label>
       <input matInput [(ngModel)]="announcement.description" name="description" required>
     </mat-form-field>
-    <mat-form-field>
+
+    <!-- Date -->
+    <mat-form-field appearance="outline">
       <mat-label>Date</mat-label>
-      <input matInput [(ngModel)]="announcement.date" name="date" required>
+      <input matInput type="date" [(ngModel)]="announcement.date" name="date" required>
     </mat-form-field>
-    <mat-form-field>
+
+    <!-- Prix -->
+    <mat-form-field appearance="outline">
       <mat-label>Prix</mat-label>
-      <input matInput [(ngModel)]="announcement.prix" name="prix" required>
+      <input matInput type="number" [(ngModel)]="announcement.prix" name="prix" required>
     </mat-form-field>
-    <mat-form-field>
+
+    <!-- Type d'annonce -->
+    <mat-form-field appearance="outline">
       <mat-label>Type</mat-label>
       <input matInput [(ngModel)]="announcement.type_announcement" name="type_announcement" required>
     </mat-form-field>
-    <mat-form-field>
+
+    <!-- Code Postal -->
+    <mat-form-field appearance="outline">
       <mat-label>Code Postal</mat-label>
       <input matInput [(ngModel)]="announcement.codePostal" name="codePostal" required>
     </mat-form-field>
-    <mat-form-field>
+
+    <!-- Ville -->
+    <mat-form-field appearance="outline">
       <mat-label>Ville</mat-label>
       <input matInput [(ngModel)]="announcement.ville" name="ville" required>
     </mat-form-field>
-    <mat-form-field>
+
+    <!-- Adresse -->
+    <mat-form-field appearance="outline">
       <mat-label>Adresse</mat-label>
       <input matInput [(ngModel)]="announcement.adresse" name="adresse" required>
     </mat-form-field>
-    <mat-form-field>
+
+    <!-- Gouvernorat -->
+    <mat-form-field appearance="outline">
       <mat-label>Gouvernorat</mat-label>
       <input matInput [(ngModel)]="announcement.gouvernorat" name="gouvernorat" required>
     </mat-form-field>
-    
-    <mat-form-field>
-    <mat-label>Phone number</mat-label>
-    <input matInput [(ngModel)]="announcement.PhoneNumber" name="Phone number" required>
-</mat-form-field>
-    <mat-form-field>
-      <mat-label>Image</mat-label>
-      <input type="file" (change)="onFileChanged($event)" required>
+
+    <!-- Numéro de téléphone -->
+    <mat-form-field appearance="outline">
+      <mat-label>Phone Number</mat-label>
+      <input matInput [(ngModel)]="announcement.PhoneNumber" name="PhoneNumber" required>
     </mat-form-field>
-    <div *ngIf="imagePreview">
-      <img [src]="imagePreview" alt="Image Preview" style="max-width: 100%; height: auto; margin-top: 10px;">
-    </div>
-    <button mat-button type="submit">Ajouter</button>
+
+    <button type="submit">Ajouter Annonce</button>
   </form>
+
+  <!-- Champ d'upload d'image caché -->
+  <div *ngIf="showImageUpload">
+    <input type="file" (change)="onFileChanged($event)">
+    <button (click)="uploadImage()">Uploader Image</button>
+  </div>
+
 </div>
-<div mat-dialog-actions>
+<div>
+<div mat-dialog-actions></div>
   <button mat-button (click)="onClose()">Fermer</button>
 </div>
