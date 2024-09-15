@@ -9,7 +9,7 @@ import { Role } from '../models/role';
 })
 export class UserService {
 
-  private apiUrl = 'http://localhost:8080'; // Mettez à jour l'URL de votre API
+  private apiUrl = 'http://localhost:8081'; // Mettez à jour l'URL de votre API
 
   constructor(private http: HttpClient) { }
 

@@ -11,7 +11,7 @@ export class Announcement {
     adresse: string;
     gouvernorat: string;
     imagePath: string;
-    PhoneNumber:string;
+    phoneNumber:string;
     email:string;
     constructor(
       id_announcement: number,
@@ -25,7 +25,7 @@ export class Announcement {
       adresse: string,
       gouvernorat: string,
       imagePath: string,
-      PhoneNumber:string,
+      phoneNumber:string,
       email:string
     ) {
       this.id_announcement = id_announcement;
@@ -39,7 +39,7 @@ export class Announcement {
       this.adresse = adresse;
       this.gouvernorat = gouvernorat;
       this.imagePath = imagePath;
-      this.PhoneNumber=PhoneNumber;
+      this.phoneNumber=phoneNumber;
       this.email=email
     }
   }

@@ -23,7 +23,7 @@ export class AuthenticationService {
       })
     };
     return this.http.post<MfaVerificationResponse>(
-      environment.apiUrl + '/login', payload, httpOptions
+      environment.apiUrl + '`http://localhost:8081/login', payload, httpOptions
     );
   }
 
@@ -62,7 +62,7 @@ export class AuthenticationService {
     // Utilisez le service Router pour effectuer la redirection
     this.router.navigate(['/admin']);
   }
-  private baseUrl = 'http://localhost:8080'
+  private baseUrl = 'http://localhost:8081'
   getCurrentUsersWithRole(id: any, role: string): Observable<any> {
     return this.http.get<any>(this.baseUrl +"/current/user/" + id+"/"+role);
   }
@@ -84,11 +84,11 @@ export class AuthenticationService {
   }
 
   forgotPassword(email: string): Observable<any> {
-    const url = `http://localhost:8080/forgot-password?email=${encodeURIComponent(email)}`;
+    const url = `http://localhost:8081/forgot-password?email=${encodeURIComponent(email)}`;
     return this.http.post(url, {});
   }
   resetPassword(token: string, newPassword: string): Observable<any> {
-    const url = 'http://localhost:8080/reset-password';
+    const url = 'http://localhost:8081/reset-password';
 
     // Créer les paramètres de la requête
     let params = new HttpParams();

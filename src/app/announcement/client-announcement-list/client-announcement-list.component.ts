@@ -1,61 +1,107 @@
-import { Component, OnInit } from '@angular/core';
-import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
+import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
 import { AnnouncementService } from 'src/app/services/announcement.service';
 import { Announcement } from 'src/app/models/announcement.model';
-import { ContactDialogComponent } from '../contact-dialog/contact-dialog.component';
+import * as bootstrap from 'bootstrap';
 
 @Component({
   selector: 'app-client-announcement-list',
   templateUrl: './client-announcement-list.component.html',
   styleUrls: ['./client-announcement-list.component.css']
 })
-
-export class ClientAnnouncementListComponent implements OnInit {
+export class ClientAnnouncementListComponent implements OnInit, AfterViewInit {
   announcements: Announcement[] = [];
+  selectedAnnouncement: any;
+  searchControl: FormControl = new FormControl();
+  filterForm: FormGroup;
 
-  constructor(
-    private announcementService: AnnouncementService,
-    public dialog: MatDialog
-  ) {}
+  constructor(private announcementService: AnnouncementService) {
+    this.filterForm = new FormGroup({
+      title: new FormControl(''),
+      minPrix: new FormControl(''),
+      maxPrix: new FormControl(''),
+      type_Announcement: new FormControl(''),
+      Date: new FormControl(''),
+      gouvernorat: new FormControl(''),
+      Ville: new FormControl(''),
+      Adresse: new FormControl('')
+    });
+  }
 
   ngOnInit(): void {
     this.loadAnnouncements();
+    this.searchControl.valueChanges.pipe(
+      debounceTime(300),
+      distinctUntilChanged(),
+      switchMap(value => this.announcementService.searchAnnouncements(value))
+    ).subscribe(
+      data => this.announcements = data,
+      error => console.error('Error searching announcements', error)
+    );
   }
 
-  private getDialogConfig(phoneNumber: string, email: string): MatDialogConfig {
-    const dialogConfig = new MatDialogConfig();
-    dialogConfig.data = { phoneNumber, email };
-    dialogConfig.width = '300px';
-    dialogConfig.height = '200px';
-    dialogConfig.enterAnimationDuration = '500ms';
-    dialogConfig.exitAnimationDuration = '500ms';
-    return dialogConfig;
+  ngAfterViewInit(): void {
+    // Initialisation des modales après que la vue a été complètement initialisée
+    const contactModalElement = document.getElementById('contactModal');
+    const detailsModalElement = document.getElementById('contactModal2');
+    const filterModalElement = document.getElementById('filterModal');
+    if (contactModalElement) {
+      new bootstrap.Modal(contactModalElement);
+    }
+    if (detailsModalElement) {
+      new bootstrap.Modal(detailsModalElement);
+    }
+    if (filterModalElement) {
+      new bootstrap.Modal(filterModalElement);
+    }
   }
-  openContactDialog(phoneNumber: string, email: string): void {
-    const dialogConfig = new MatDialogConfig();
-    dialogConfig.data = { phoneNumber, email };
-    dialogConfig.width = '400px'; 
-    dialogConfig.autoFocus = true; 
-    dialogConfig.disableClose = false; 
-    dialogConfig.hasBackdrop = true; 
-    dialogConfig.backdropClass = 'custom-backdrop'; 
-    dialogConfig.panelClass = 'custom-dialog-container';
-    
-    // Désactiver les animations
-    dialogConfig.enterAnimationDuration = '0ms';
-    dialogConfig.exitAnimationDuration = '0ms';
-  
-    this.dialog.open(ContactDialogComponent, dialogConfig);
-  }
-  
-  
-    
 
   loadAnnouncements(): void {
     this.announcementService.getAllAnnouncements().subscribe(
       data => this.announcements = data,
       error => console.error('Error loading announcements', error)
     );
+  }
+
+  filterAnnouncements(): void {
+    const filters = this.filterForm.value;
+    this.announcementService.filterAnnouncements(filters).subscribe(
+      data => this.announcements = data,
+      error => console.error('Error filtering announcements', error)
+    );
+  }
+
+  openFilterModal(): void {
+    const modalElement = document.getElementById('filterModal');
+    if (modalElement) {
+      const modal = new bootstrap.Modal(modalElement);
+      modal.show();
+    } else {
+      console.error('Modal element not found');
+    }
+  }
+
+  openContactModal(announcement: any) {
+    this.selectedAnnouncement = announcement;
+    const modalElement = document.getElementById('contactModal');
+    if (modalElement) {
+      const modal = new bootstrap.Modal(modalElement);
+      modal.show();
+    } else {
+      console.error('Modal element not found');
+    }
+  }
+
+  openDetailsModal(announcement: Announcement) {
+    this.selectedAnnouncement = announcement;
+    const modalElement = document.getElementById('contactModal2');
+    if (modalElement) {
+      const modal = new bootstrap.Modal(modalElement);
+      modal.show();
+    } else {
+      console.error('Modal element not found');
+    }
   }
 
   getImageUrl(imagePath: string): string {

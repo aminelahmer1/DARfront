@@ -1,8 +1,18 @@
-.image-preview img {
-    max-width: 100%;
-    height: auto;
-  }
+.form-group {
+  margin-bottom: 15px;
+}
 
-  .form-group {
-    margin-bottom: 1.5rem;
-  }
+.form-control {
+  width: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.btn {
+  margin-top: 10px;
+}
+
+.image-preview img {
+  max-width: 100%;
+  height: auto;
+}

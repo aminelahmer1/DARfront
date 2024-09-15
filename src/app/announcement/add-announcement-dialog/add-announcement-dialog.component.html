@@ -30,8 +30,11 @@
 
     <!-- Type d'annonce -->
     <mat-form-field appearance="outline">
-      <mat-label>Type</mat-label>
-      <input matInput [(ngModel)]="announcement.type_announcement" name="type_announcement" required>
+      <mat-label>Type d'annonce</mat-label>
+      <mat-radio-group [(ngModel)]="announcement.type_announcement" name="type_announcement" required>
+        <mat-radio-button value="location">Location</mat-radio-button>
+        <mat-radio-button value="vente">Vente</mat-radio-button>
+      </mat-radio-group>
     </mat-form-field>
 
     <!-- Code Postal -->
@@ -61,7 +64,7 @@
     <!-- Numéro de téléphone -->
     <mat-form-field appearance="outline">
       <mat-label>Phone Number</mat-label>
-      <input matInput [(ngModel)]="announcement.PhoneNumber" name="PhoneNumber" required>
+      <input matInput [(ngModel)]="announcement.phoneNumber" name="PhoneNumber" required>
     </mat-form-field>
 
     <button type="submit">Ajouter Annonce</button>

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Announcement } from '../models/announcement.model';
 
@@ -50,4 +50,16 @@ export class AnnouncementService {
     return `http://localhost:8081/announcement-images/${imagePath}`;
   }
   
+ 
+  searchAnnouncements(keyword: string): Observable<Announcement[]> {
+    let params = new HttpParams().set('keyword', keyword);
+    return this.http.get<Announcement[]>(`${this.baseUrl}/search`, { params });
+  }
+  filterAnnouncements(filters: any): Observable<Announcement[]> {
+    let params = new HttpParams();
+    Object.keys(filters).forEach(key => {
+      params = params.append(key, filters[key] || '');
+    });
+    return this.http.get<Announcement[]>(`${this.baseUrl}/filterAnnouncements`, { params });
+  }
 }

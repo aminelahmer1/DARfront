@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
 import { MfaVerificationRequest } from '../shared/mfa-verification-request.model';
 import { MfaVerificationResponse } from '../shared/mfa-verification-response.modal';
 import { AuthenticationService } from './authentication.service';
-const API_URL = 'http://localhost:8080/api/test/';
+const API_URL = 'http://localhost:8081/api/test/';
 @Injectable({
   providedIn: 'root'
 })
@@ -26,7 +26,7 @@ export class AuthService {
   getRolesFromDatabase(): Observable<any[]> {
     return this.Http.get<string[]>('/api/roles');
   }
-  private apiUrl = 'http://localhost:8080'; // Mettez à jour l'URL de votre API
+  private apiUrl = 'http://localhost:8081'; // Mettez à jour l'URL de votre API
   // Méthode pour vérifier si l'utilisateur est administrateur
  // isAdmin(email: string): Observable<boolean> {
  //   return this.Http.get<boolean>(`${this.apiUrl}/isAdmin/${email}`);
@@ -67,11 +67,11 @@ export class AuthService {
   }
 
   forgotPassword(email: string): Observable<any> {
-    const url = `http://localhost:8080/forgot-password?email=${encodeURIComponent(email)}`;
+    const url = `http://localhost:8081/forgot-password?email=${encodeURIComponent(email)}`;
     return this.Http.post(url, {});
   }
   resetPassword(token: string, newPassword: string): Observable<any> {
-    const url = 'http://localhost:8080/reset-password';
+    const url = 'http://localhost:8081/reset-password';
 
     // Créer les paramètres de la requête
     let params = new HttpParams();
@@ -81,7 +81,7 @@ export class AuthService {
     // Envoyer la requête avec les paramètres dans l'URL
     return this.Http.post<any>(url, {}, { params });
   }
-  private baseUrl = 'http://localhost:8080'
+  private baseUrl = 'http://localhost:8081'
   getCurrentUsersWithRole(id: any, role: string): Observable<any> {
     return this.Http.get<any>(this.baseUrl +"/current/user/" + id+"/"+role);
   }
@@ -119,7 +119,7 @@ export class AuthService {
   }
   
   getModeratorBoard(): Observable<any> {
-    return this.Http.get(API_URL + 'mod', { responseType: 'text' });
+    return this.Http.get(API_URL + 'seller', { responseType: 'text' });
   }
 
   getAdminBoard(): Observable<any> {

@@ -1,6 +1,6 @@
 <div class="announcement-list">
-  <button mat-button (click)="openAddDialog()">Ajouter une Annonce (Popup)</button>
-  <button mat-button [routerLink]="['/add-announcement']">Ajouter une Annonce (Page)</button>
+  
+  <button mat-button [routerLink]="['/add-announcement']">Ajouter une Annonce </button>
 
   <div class="grid-container">
     <div class="grid-item" *ngFor="let announcement of announcements">
@@ -13,7 +13,7 @@
       <p><strong>Ville:</strong> {{ announcement.ville }}</p>
       <p><strong>Adresse:</strong> {{ announcement.adresse }}</p>
       <p><strong>Gouvernorat:</strong> {{ announcement.gouvernorat }}</p>
-      <p><strong>Phone Number:</strong> {{ announcement.PhoneNumber }}</p>
+      <p><strong>Phone Number:</strong> {{ announcement.phoneNumber }}</p>
       
       <!-- Bouton pour supprimer l'annonce -->
       <button mat-button (click)="deleteAnnouncement(announcement.id_announcement)">Supprimer</button>

@@ -13,6 +13,7 @@ export class AddAnnouncementComponent implements OnInit {
   imagePreview: string | ArrayBuffer | null = null;
   showImageUpload: boolean = false;
   lastAnnouncementId: number | null = null;
+announcement: any;
 
   constructor(private announcementService: AnnouncementService) { }
 
@@ -28,7 +29,7 @@ export class AddAnnouncementComponent implements OnInit {
       codePostal: new FormControl(''),
       adresse: new FormControl(''),
       gouvernorat: new FormControl(''),
-      PhoneNumber: new FormControl('')
+      phoneNumber: new FormControl('')
     });
   }
 

@@ -34,7 +34,7 @@ const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'verify', component: VerifyAccountComponent },
   { path: 'announcements', component: AnnouncementListComponent },
-  { path: 'add-announcement', component: AddAnnouncementComponent, canActivate: [AuthGuard] }, // Route protégée par le guard
+  { path: 'add-announcement', component: AddAnnouncementComponent }, // Route protégée par le guard
   { path: 'clientannouncements', component: ClientAnnouncementListComponent },
   { path: '**', redirectTo: '/announcements' }
 ];

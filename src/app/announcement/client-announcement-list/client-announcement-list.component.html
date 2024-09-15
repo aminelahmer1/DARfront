@@ -1,20 +1,161 @@
-<div class="announcement-list">
+<div class="container mt-4">
+  <h2 class="text-center mb-4">Recherche d'Annonces</h2>
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <input type="text" class="form-control" [formControl]="searchControl" placeholder="Rechercher...">
+    </div>
+  </div>
+  <div class="row justify-content-center mt-3">
+    <div class="col-md-8 text-center">
+      <button class="btn btn-primary" (click)="openFilterModal()">Filtrer</button>
+    </div>
+  </div>
+  <div class="announcement-list mt-4">
     <div class="grid-container">
       <div class="grid-item" *ngFor="let announcement of announcements">
         <h3>{{ announcement.title }}</h3>
         <img *ngIf="announcement.imagePath" [src]="getImageUrl(announcement.imagePath)" alt="Image de l'annonce" class="announcement-image">
-        <p><strong>Date:</strong> {{ announcement.date }}</p>
         <p><strong>Prix:</strong> {{ announcement.prix }}</p>
         <p><strong>Type:</strong> {{ announcement.type_announcement }}</p>
-        <p><strong>Code Postal:</strong> {{ announcement.codePostal }}</p>
+        <p><strong>Date:</strong> {{ announcement.date }}</p>
+        <p><strong>Gouvernorat:</strong> {{ announcement.gouvernorat }}</p>
         <p><strong>Ville:</strong> {{ announcement.ville }}</p>
         <p><strong>Adresse:</strong> {{ announcement.adresse }}</p>
-        <p><strong>Gouvernorat:</strong> {{ announcement.gouvernorat }}</p>
-        <p><strong>Phone Number:</strong> {{ announcement.PhoneNumber }}</p>
-        
-        <!-- Bouton pour contacter -->
-        <button mat-button (click)="openContactDialog(announcement.PhoneNumber, announcement.email)">Contacter</button>
+        <div class="button-group">
+          <button class="btn btn-primary" (click)="openContactModal(announcement)">Contacter</button>
+          <button class="btn btn-secondary" (click)="openDetailsModal(announcement)">Voir Détails</button>
+        </div>
       </div>
     </div>
   </div>
-  
+</div>
+
+
+
+
+
+
+<!-- Modal Filtre -->
+<div class="modal fade" id="filterModal" tabindex="-1" aria-labelledby="filterModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title text-center w-100" id="filterModalLabel">Filtrer les Annonces</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="filterForm" (ngSubmit)="filterAnnouncements()">
+          <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-3">
+              <input type="number" class="form-control" formControlName="minPrix" placeholder="Prix Min">
+            </div>
+            <div class="col-md-1"></div>  <div class="col-md-1"></div>  <div class="col-md-1"></div><!-- Espace ajouté -->
+            <div class="col-md-3">
+              <input type="number" class="form-control" formControlName="maxPrix" placeholder="Prix Max">
+            </div>
+          
+          
+          </div>
+          <div class="row mt-2">
+
+            <div class="col-md-4">
+              <input type="text" class="form-control" formControlName="gouvernorat" placeholder="Gouvernorat">
+            </div>
+            <div class="col-md-4">
+              <input type="text" class="form-control" formControlName="Ville" placeholder="Ville">
+            </div>
+            <div class="col-md-4">
+              <input type="text" class="form-control" formControlName="Adresse" placeholder="Adresse">
+              
+            </div>
+           
+          </div>
+          <div class="row mt-2">
+            <div class="col-md-6">
+            
+
+              <select class="form-control" formControlName="type_Announcement">
+                <option value="">Type</option>
+                <option value="Occasion">Occasion</option>
+                <option value="Neuf">Neuf</option>
+              </select>
+            </div>
+            <div class="col-md-6">
+
+              <input type="text" class="form-control" formControlName="Date" placeholder="Date">
+            </div>
+          </div>
+          <div class="row mt-3">
+            <div class="col-md-12 text-center">
+              <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Appliquer</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- Modal Contact -->
+<div class="modal fade" id="contactModal" tabindex="-1" aria-labelledby="contactModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="contactModalLabel">Contact Information</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p><strong>Phone Number:</strong> {{ selectedAnnouncement?.phoneNumber }}</p>
+        <p><strong>Email:</strong> {{ selectedAnnouncement?.email }}</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Détails -->
+<div class="modal fade" id="contactModal2" tabindex="-1" aria-labelledby="contactModal2Label" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="contactModal2Label">Détails de l'annonce</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <img *ngIf="selectedAnnouncement?.imagePath" [src]="selectedAnnouncement?.imagePath" alt="Image de l'annonce" class="announcement-image">
+        <p><strong>Titre:</strong> {{ selectedAnnouncement?.title }}</p>
+        <p><strong>Description:</strong> {{ selectedAnnouncement?.description }}</p>
+        <p><strong>Date:</strong> {{ selectedAnnouncement?.Date }}</p>
+        <p><strong>Prix:</strong> {{ selectedAnnouncement?.Prix }}</p>
+        <p><strong>Type:</strong> {{ selectedAnnouncement?.type_Announcement }}</p>
+    
+        <p><strong>Code Postal:</strong> {{ selectedAnnouncement?.codePostal }}</p>
+        <p><strong>Ville:</strong> {{ selectedAnnouncement?.ville }}</p>
+        <p><strong>Adresse:</strong> {{ selectedAnnouncement?.adresse }}</p>
+        <p><strong>Gouvernorat:</strong> {{ selectedAnnouncement?.gouvernorat }}</p>
+        <p><strong>Phone Number:</strong> {{ selectedAnnouncement?.phoneNumber }}</p>
+        <p><strong>Email:</strong> {{ selectedAnnouncement?.email }}</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

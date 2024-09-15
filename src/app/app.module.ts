@@ -42,6 +42,9 @@ import { VerifyAccountComponent } from './verify-account/verify-account.componen
 import { ClientAnnouncementListComponent } from './announcement/client-announcement-list/client-announcement-list.component';
 import { ContactDialogComponent } from './announcement/contact-dialog/contact-dialog.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
+import { MatPseudoCheckboxModule } from '@angular/material/core';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AnnouncementDetailsComponent } from './announcement/announcement-details/announcement-details.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -77,6 +80,7 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
     VerifyAccountComponent,
     ClientAnnouncementListComponent,
     ContactDialogComponent,
+    AnnouncementDetailsComponent,
   ],
   imports: [
     BrowserModule,
@@ -88,7 +92,9 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
     MatFormFieldModule,
     MatInputModule,
     HttpClientModule,
-    DragDropModule 
+    DragDropModule,
+    MatPseudoCheckboxModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent],

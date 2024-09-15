@@ -7,6 +7,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
   styleUrls: ['./contact-dialog.component.css']
 })
 export class ContactDialogComponent {
+selectedAnnouncement: any;
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: { phoneNumber: string, email: string },
     private dialogRef: MatDialogRef<ContactDialogComponent>

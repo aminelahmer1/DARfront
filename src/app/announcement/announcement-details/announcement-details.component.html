@@ -1,0 +1,29 @@
+<!-- Modal -->
+<div class="modal fade" id="contactModal" tabindex="-1" aria-labelledby="contactModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="contactModalLabel">Détails de l'annonce</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p><strong>Titre:</strong> {{ selectedAnnouncement?.title }}</p>
+          <p><strong>Description:</strong> {{ selectedAnnouncement?.description }}</p>
+          <p><strong>Date:</strong> {{ selectedAnnouncement?.date }}</p>
+          <p><strong>Prix:</strong> {{ selectedAnnouncement?.prix }}</p>
+          <p><strong>Type:</strong> {{ selectedAnnouncement?.type_announcement }}</p>
+          <p><strong>Code Postal:</strong> {{ selectedAnnouncement?.codePostal }}</p>
+          <p><strong>Ville:</strong> {{ selectedAnnouncement?.ville }}</p>
+          <p><strong>Adresse:</strong> {{ selectedAnnouncement?.adresse }}</p>
+          <p><strong>Gouvernorat:</strong> {{ selectedAnnouncement?.gouvernorat }}</p>
+          <p><strong>Phone Number:</strong> {{ selectedAnnouncement?.PhoneNumber }}</p>
+          <p><strong>Email:</strong> {{ selectedAnnouncement?.email }}</p>
+          <img *ngIf="selectedAnnouncement?.imagePath" [src]="selectedAnnouncement?.imagePath" alt="Image de l'annonce" class="announcement-image">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
