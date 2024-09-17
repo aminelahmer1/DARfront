@@ -20,7 +20,7 @@ export class AnnouncementListComponent implements OnInit {
     '', // description
     '', // date
     '', // prix
-    '', // type_announcement
+    '', // type_Announcement
     '', // ville
     '', // codePostal
     '', // adresse

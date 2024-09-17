@@ -2,78 +2,105 @@
   <h2 class="text-center">Ajouter une Nouvelle Annonce</h2>
 
   <form [formGroup]="announcementForm" (ngSubmit)="saveAnnouncement()" class="mx-auto w-75 p-4 shadow rounded bg-light">
+    
+    <!-- Titre -->
     <div class="form-group">
       <label for="title">Titre :</label>
       <input id="title" type="text" formControlName="title" class="form-control" required>
+      <div *ngIf="isFieldInvalid('title')" class="text-danger">Le titre est obligatoire.</div>
     </div>
 
+    <!-- Description -->
     <div class="form-group">
       <label for="description">Description :</label>
       <textarea id="description" formControlName="description" class="form-control" required></textarea>
+      <div *ngIf="isFieldInvalid('description')" class="text-danger">La description est obligatoire.</div>
     </div>
 
+    <!-- Email -->
     <div class="form-group">
       <label for="email">Email :</label>
       <input id="email" type="email" formControlName="email" class="form-control" required>
+      <div *ngIf="isFieldInvalid('email')" class="text-danger">
+        L'email est obligatoire et doit être valide.
+      </div>
     </div>
 
+    <!-- Date -->
     <div class="form-group">
       <label for="date">Date :</label>
       <input id="date" type="date" formControlName="date" class="form-control" required>
+      <div *ngIf="isFieldInvalid('date')" class="text-danger">La date est obligatoire.</div>
     </div>
 
+    <!-- Prix -->
     <div class="form-group">
       <label for="prix">Prix :</label>
       <input id="prix" type="number" formControlName="prix" class="form-control" required>
+      <div *ngIf="isFieldInvalid('prix')" class="text-danger">Le prix doit être positif.</div>
     </div>
 
+    <!-- Type d'annonce -->
     <div class="form-group">
-      <label>Type d'Annonce :</label>
-      
-        <div>
-          <input type="checkbox" id="type_announcement" formControlName="type_announcement" value="Location">
-          <label for="Location">Location</label>
-        </div>
-        <div>
-          <input type="checkbox" id="type_announcement" formControlName="type_announcement" value="Vente">
-          <label for="Vente">Vente</label>
-        </div>
+      <label for="type_Announcement">Type :</label>
+      <select id="type_Announcement" formControlName="type_Announcement" class="form-control" required>
+        <option value="" disabled>Sélectionnez le type d'annonce</option>
+        <option *ngFor="let type_Announcement of types" [value]="type_Announcement">{{ type_Announcement }}</option>
+      </select>
+      <div *ngIf="isFieldInvalid('type_Announcement')" class="text-danger">Le type est obligatoire.</div>
     </div>
 
+    <!-- Ville -->
     <div class="form-group">
       <label for="ville">Ville :</label>
       <input id="ville" type="text" formControlName="ville" class="form-control" required>
+      <div *ngIf="isFieldInvalid('ville')" class="text-danger">La ville est obligatoire.</div>
     </div>
 
+    <!-- Code Postal -->
     <div class="form-group">
       <label for="codePostal">Code Postal :</label>
       <input id="codePostal" type="text" formControlName="codePostal" class="form-control" required>
+      <div *ngIf="isFieldInvalid('codePostal')" class="text-danger">Le code postal est obligatoire.</div>
     </div>
 
+    <!-- Adresse -->
     <div class="form-group">
       <label for="adresse">Adresse :</label>
       <input id="adresse" type="text" formControlName="adresse" class="form-control" required>
+      <div *ngIf="isFieldInvalid('adresse')" class="text-danger">L'adresse est obligatoire.</div>
     </div>
 
+    <!-- Gouvernorat -->
     <div class="form-group">
       <label for="gouvernorat">Gouvernorat :</label>
-      <input id="gouvernorat" type="text" formControlName="gouvernorat" class="form-control" required>
+      <select id="gouvernorat" formControlName="gouvernorat" class="form-control" required>
+        <option value="" disabled>Sélectionnez un Gouvernorat</option>
+        <option *ngFor="let gouvernorat of gouvernorats" [value]="gouvernorat">{{ gouvernorat }}</option>
+      </select>
+      <div *ngIf="isFieldInvalid('gouvernorat')" class="text-danger">Le gouvernorat est obligatoire.</div>
     </div>
 
+    <!-- Numéro de téléphone -->
     <div class="form-group">
       <label for="phoneNumber">Téléphone :</label>
       <input id="phoneNumber" type="text" formControlName="phoneNumber" class="form-control" required>
+      <div *ngIf="isFieldInvalid('phoneNumber')" class="text-danger">Le numéro de téléphone est obligatoire et doit être valide.</div>
     </div>
 
+    <!-- Bouton pour soumettre le formulaire -->
     <button type="submit" class="btn btn-success mt-2">Continuer</button>
   </form>
 
+  <!-- Section pour le téléchargement d'image après ajout de l'annonce -->
   <div *ngIf="showImageUpload" class="mt-4">
     <label for="image">Image :</label>
     <input type="file" id="image" class="form-control" (change)="onFileChanged($event)">
+    
     <div *ngIf="imagePreview" class="image-preview mt-2">
       <img [src]="imagePreview" alt="Image Preview" class="img-thumbnail">
     </div>
+    
     <button (click)="uploadImage()" type="submit" class="btn btn-success mt-2">Ajouter l'Annonce</button>
   </div>
 </div>

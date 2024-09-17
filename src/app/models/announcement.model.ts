@@ -5,7 +5,7 @@ export class Announcement {
     description: string;
     date: string;
     prix: string;
-    type_announcement: string;
+    type_Announcement: string;
     codePostal: string;
     ville: string;
     adresse: string;
@@ -19,7 +19,7 @@ export class Announcement {
       description: string,
       date: string,
       prix: string,
-      type_announcement: string,
+      type_Announcement: string,
       codePostal: string,
       ville: string,
       adresse: string,
@@ -33,7 +33,7 @@ export class Announcement {
       this.description = description;
       this.date = date;
       this.prix = prix;
-      this.type_announcement = type_announcement;
+      this.type_Announcement = type_Announcement;
       this.codePostal = codePostal;
       this.ville = ville;
       this.adresse = adresse;

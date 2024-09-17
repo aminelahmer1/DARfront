@@ -13,7 +13,7 @@ export class AnnouncementDetailsComponent {
       description: string,
       date: string,
       prix: string,
-      type_announcement: string,
+      type_Announcement: string,
       codePostal: string,
       ville: string,
       adresse: string,
