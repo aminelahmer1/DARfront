@@ -46,6 +46,7 @@ import { MatPseudoCheckboxModule } from '@angular/material/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AnnouncementDetailsComponent } from './announcement/announcement-details/announcement-details.component';
 import { AnnouncementStatsComponent } from './announcement/announcement-stats/announcement-stats.component';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 
 
@@ -100,7 +101,8 @@ import { AnnouncementStatsComponent } from './announcement/announcement-stats/an
     DragDropModule,
     MatPseudoCheckboxModule,
     BrowserAnimationsModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    NgxPaginationModule
     
   ],
   providers: [

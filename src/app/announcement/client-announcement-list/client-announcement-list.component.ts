@@ -17,6 +17,7 @@ export class ClientAnnouncementListComponent implements OnInit, AfterViewInit {
   selectedAnnouncement: any;
   searchControl: FormControl = new FormControl();
   filterForm: FormGroup;
+  page: number = 1;  // Page actuelle pour la pagination
 
   constructor(private announcementService: AnnouncementService) {
     this.filterForm = new FormGroup({
@@ -30,6 +31,10 @@ export class ClientAnnouncementListComponent implements OnInit, AfterViewInit {
       Adresse: new FormControl('')
     });
   }
+
+  
+
+
 
   ngOnInit(): void {
     this.loadAnnouncements();

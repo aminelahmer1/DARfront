@@ -67,8 +67,8 @@ export class AnnouncementService {
   getSearchHistory(): Observable<SearchHistory[]> {
     return this.http.get<SearchHistory[]>(`${this.baseUrl}/searchHistory`);
   }
-  countAnnouncementsByGouvernorat(): Observable<{ [key: string]: number }> {
-    return this.http.get<{ [key: string]: number }>(`${this.baseUrl}/countAnnouncementsByGouvernorat`);
+  getAnnouncementsByGovernorate(): Observable<any> {
+    return this.http.get<any>(`${this.baseUrl}/gouvernorat`);
   }
 
   

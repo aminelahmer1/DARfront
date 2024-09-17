@@ -11,9 +11,10 @@
       <button class="btn btn-secondary" (click)="openHistoryModal()">Historique</button>
     </div>
   </div>
+  
   <div class="announcement-list mt-4">
     <div class="grid-container">
-      <div class="grid-item" *ngFor="let announcement of announcements">
+      <div class="grid-item" *ngFor="let announcement of announcements | paginate: { itemsPerPage: 12, currentPage: page }">
         <h3>{{ announcement.title }}</h3>
         <img *ngIf="announcement.imagePath" [src]="getImageUrl(announcement.imagePath)" alt="Image de l'annonce" class="announcement-image">
         <p><strong>Prix:</strong> {{ announcement.prix }}</p>
@@ -28,6 +29,10 @@
         </div>
       </div>
     </div>
+
+
+    <!-- Pagination controls -->
+    <pagination-controls (pageChange)="page = $event"></pagination-controls>
   </div>
 </div>
 
@@ -73,39 +78,59 @@
             <div class="col-md-3">
               <input type="number" class="form-control" formControlName="minPrix" placeholder="Prix Min">
             </div>
-            <div class="col-md-1"></div>  <div class="col-md-1"></div>  <div class="col-md-1"></div><!-- Espace ajouté -->
+            <div class="col-md-1"></div>
+            <div class="col-md-1"></div>
             <div class="col-md-3">
               <input type="number" class="form-control" formControlName="maxPrix" placeholder="Prix Max">
             </div>
-          
-          
           </div>
           <div class="row mt-2">
-
             <div class="col-md-4">
-              <input type="text" class="form-control" formControlName="gouvernorat" placeholder="Gouvernorat">
+              <!-- Select pour les gouvernorats -->
+              <select class="form-control" formControlName="gouvernorat">
+                <option value="">Sélectionnez un gouvernorat</option>
+                <option value="Ariana">Ariana</option>
+                <option value="Béja">Béja</option>
+                <option value="Ben Arous">Ben Arous</option>
+                <option value="Bizerte">Bizerte</option>
+                <option value="Gabès">Gabès</option>
+                <option value="Gafsa">Gafsa</option>
+                <option value="Jendouba">Jendouba</option>
+                <option value="Kairouan">Kairouan</option>
+                <option value="Kasserine">Kasserine</option>
+                <option value="Kébili">Kébili</option>
+                <option value="Le Kef">Le Kef</option>
+                <option value="Mahdia">Mahdia</option>
+                <option value="La Manouba">La Manouba</option>
+                <option value="Médenine">Médenine</option>
+                <option value="Monastir">Monastir</option>
+                <option value="Nabeul">Nabeul</option>
+                <option value="Sfax">Sfax</option>
+                <option value="Sidi Bouzid">Sidi Bouzid</option>
+                <option value="Siliana">Siliana</option>
+                <option value="Sousse">Sousse</option>
+                <option value="Tataouine">Tataouine</option>
+                <option value="Tozeur">Tozeur</option>
+                <option value="Tunis">Tunis</option>
+                <option value="Zaghouan">Zaghouan</option>
+              </select>
             </div>
             <div class="col-md-4">
               <input type="text" class="form-control" formControlName="Ville" placeholder="Ville">
             </div>
             <div class="col-md-4">
               <input type="text" class="form-control" formControlName="Adresse" placeholder="Adresse">
-              
             </div>
-           
           </div>
           <div class="row mt-2">
             <div class="col-md-6">
-            
-
               <select class="form-control" formControlName="type_Announcement">
                 <option value="">Type</option>
-                <option value="Occasion">Occasion</option>
-                <option value="Neuf">Neuf</option>
+                <option value="Location">Location</option>
+                <option value="Vente">Vente</option>
               </select>
             </div>
             <div class="col-md-6">
-
               <input type="text" class="form-control" formControlName="Date" placeholder="Date">
             </div>
           </div>
@@ -119,8 +144,6 @@
     </div>
   </div>
 </div>
-
-
 
 
 
