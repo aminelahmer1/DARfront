@@ -1,9 +1,9 @@
 <div class="announcement-list">
-  
-  <button mat-button [routerLink]="['/add-announcement']">Ajouter une Annonce </button>
+  <button mat-button [routerLink]="['/add-announcement']">Ajouter une Annonce</button>
+  <button mat-button [routerLink]="['/announcement-stats']">Voir les Statistiques</button>
 
   <div class="grid-container">
-    <div class="grid-item" *ngFor="let announcement of announcements">
+    <div class="grid-item" *ngFor="let announcement of announcements" [id]="'announcement-' + announcement.id_announcement">
       <h3>{{ announcement.title }}</h3>
       <img *ngIf="announcement.imagePath" [src]="getImageUrl(announcement.imagePath)" alt="Image de l'annonce" class="announcement-image">
       <p><strong>Date:</strong> {{ announcement.date }}</p>
@@ -17,6 +17,9 @@
       
       <!-- Bouton pour supprimer l'annonce -->
       <button mat-button (click)="deleteAnnouncement(announcement.id_announcement)">Supprimer</button>
+      
+      <!-- Bouton pour imprimer l'annonce -->
+      <button mat-button (click)="printAnnouncement(announcement)">Imprimer</button>
     </div>
   </div>
 </div>

@@ -8,6 +8,7 @@
   <div class="row justify-content-center mt-3">
     <div class="col-md-8 text-center">
       <button class="btn btn-primary" (click)="openFilterModal()">Filtrer</button>
+      <button class="btn btn-secondary" (click)="openHistoryModal()">Historique</button>
     </div>
   </div>
   <div class="announcement-list mt-4">
@@ -25,6 +26,28 @@
           <button class="btn btn-primary" (click)="openContactModal(announcement)">Contacter</button>
           <button class="btn btn-secondary" (click)="openDetailsModal(announcement)">Voir Détails</button>
         </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Historique -->
+<div class="modal fade" id="historyModal" tabindex="-1" aria-labelledby="historyModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="historyModalLabel">Historique des Recherches</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <ul>
+          <li *ngFor="let history of searchHistory">
+            {{ history.keyword }} - {{ history.searchDate | date:'short' }}
+          </li>
+        </ul>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
       </div>
     </div>
   </div>

@@ -45,6 +45,10 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
 import { MatPseudoCheckboxModule } from '@angular/material/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AnnouncementDetailsComponent } from './announcement/announcement-details/announcement-details.component';
+import { AnnouncementStatsComponent } from './announcement/announcement-stats/announcement-stats.component';
+
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -81,6 +85,7 @@ import { AnnouncementDetailsComponent } from './announcement/announcement-detail
     ClientAnnouncementListComponent,
     ContactDialogComponent,
     AnnouncementDetailsComponent,
+    AnnouncementStatsComponent,
   ],
   imports: [
     BrowserModule,
@@ -94,9 +99,13 @@ import { AnnouncementDetailsComponent } from './announcement/announcement-detail
     HttpClientModule,
     DragDropModule,
     MatPseudoCheckboxModule,
+    BrowserAnimationsModule,
     BrowserAnimationsModule
+    
   ],
-  providers: [],
+  providers: [
+    
+  ],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

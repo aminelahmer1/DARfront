@@ -3,6 +3,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
 import { AnnouncementService } from 'src/app/services/announcement.service';
 import { Announcement } from 'src/app/models/announcement.model';
+import { SearchHistory } from 'src/app/models/search-history';
 import * as bootstrap from 'bootstrap';
 
 @Component({
@@ -12,6 +13,7 @@ import * as bootstrap from 'bootstrap';
 })
 export class ClientAnnouncementListComponent implements OnInit, AfterViewInit {
   announcements: Announcement[] = [];
+  searchHistory: SearchHistory[] = [];
   selectedAnnouncement: any;
   searchControl: FormControl = new FormControl();
   filterForm: FormGroup;
@@ -42,18 +44,18 @@ export class ClientAnnouncementListComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    // Initialisation des modales après que la vue a été complètement initialisée
-    const contactModalElement = document.getElementById('contactModal');
-    const detailsModalElement = document.getElementById('contactModal2');
-    const filterModalElement = document.getElementById('filterModal');
-    if (contactModalElement) {
-      new bootstrap.Modal(contactModalElement);
-    }
-    if (detailsModalElement) {
-      new bootstrap.Modal(detailsModalElement);
-    }
-    if (filterModalElement) {
-      new bootstrap.Modal(filterModalElement);
+    this.initializeModal('contactModal');
+    this.initializeModal('contactModal2');
+    this.initializeModal('filterModal');
+    this.initializeModal('historyModal');
+  }
+
+  initializeModal(modalId: string): void {
+    const modalElement = document.getElementById(modalId);
+    if (modalElement) {
+      new bootstrap.Modal(modalElement);
+    } else {
+      console.error(`Modal element with id ${modalId} not found`);
     }
   }
 
@@ -102,6 +104,22 @@ export class ClientAnnouncementListComponent implements OnInit, AfterViewInit {
     } else {
       console.error('Modal element not found');
     }
+  }
+
+  openHistoryModal(): void {
+    this.announcementService.getSearchHistory().subscribe(
+      data => {
+        this.searchHistory = data;
+        const modalElement = document.getElementById('historyModal');
+        if (modalElement) {
+          const modal = new bootstrap.Modal(modalElement);
+          modal.show();
+        } else {
+          console.error('Modal element not found');
+        }
+      },
+      error => console.error('Error loading search history', error)
+    );
   }
 
   getImageUrl(imagePath: string): string {

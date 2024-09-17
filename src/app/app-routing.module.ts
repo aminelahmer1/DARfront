@@ -19,6 +19,7 @@ import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { VerifyAccountComponent } from './verify-account/verify-account.component';
 import { ClientAnnouncementListComponent } from './announcement/client-announcement-list/client-announcement-list.component';
+import { AnnouncementStatsComponent } from './announcement/announcement-stats/announcement-stats.component';
 
 
 const routes: Routes = [
@@ -34,7 +35,8 @@ const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'verify', component: VerifyAccountComponent },
   { path: 'announcements', component: AnnouncementListComponent },
-  { path: 'add-announcement', component: AddAnnouncementComponent }, // Route protégée par le guard
+  { path: 'add-announcement', component: AddAnnouncementComponent },
+  { path: 'announcement-stats', component: AnnouncementStatsComponent }, // Route protégée par le guard
   { path: 'clientannouncements', component: ClientAnnouncementListComponent },
   { path: '**', redirectTo: '/announcements' }
 ];

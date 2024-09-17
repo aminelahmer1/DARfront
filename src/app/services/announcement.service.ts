@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Announcement } from '../models/announcement.model';
+import { SearchHistory } from '../models/search-history';
 
 @Injectable({
   providedIn: 'root'
@@ -46,9 +47,10 @@ export class AnnouncementService {
   getAnnouncementsByUserId(userId: number): Observable<Announcement[]> {
     return this.http.get<Announcement[]>(`${this.baseUrl}/api/announcements/user/${userId}`);
   }
-  getImageUrl(imagePath: string): string {
-    return `http://localhost:8081/announcement-images/${imagePath}`;
-  }
+ getImageUrl(imagePath: string): string {
+  return `${this.baseUrl}/announcement-images/${imagePath}`;
+}
+
   
  
   searchAnnouncements(keyword: string): Observable<Announcement[]> {
@@ -62,4 +64,12 @@ export class AnnouncementService {
     });
     return this.http.get<Announcement[]>(`${this.baseUrl}/filterAnnouncements`, { params });
   }
+  getSearchHistory(): Observable<SearchHistory[]> {
+    return this.http.get<SearchHistory[]>(`${this.baseUrl}/searchHistory`);
+  }
+  countAnnouncementsByGouvernorat(): Observable<{ [key: string]: number }> {
+    return this.http.get<{ [key: string]: number }>(`${this.baseUrl}/countAnnouncementsByGouvernorat`);
+  }
+
+  
 }

@@ -3,6 +3,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { AnnouncementService } from 'src/app/services/announcement.service';
 import { AddAnnouncementDialogComponent } from '../add-announcement-dialog/add-announcement-dialog.component';
 import { Announcement } from 'src/app/models/announcement.model';
+import html2canvas from 'html2canvas';
+import jsPDF from 'jspdf';
 
 @Component({
   selector: 'app-announcement-list',
@@ -131,6 +133,20 @@ export class AnnouncementListComponent implements OnInit {
           console.error('Erreur lors de la suppression de l\'annonce', err);
           alert('Une erreur est survenue lors de la suppression. Veuillez réessayer.');
         }
+      });
+    }
+  }
+  printAnnouncement(announcement: Announcement): void {
+    const data = document.getElementById(`announcement-${announcement.id_announcement}`);
+    if (data) {
+      html2canvas(data).then((canvas) => {
+        const imgWidth = 208;
+        const imgHeight = (canvas.height * imgWidth) / canvas.width;
+        const contentDataURL = canvas.toDataURL('image/png');
+        const pdf = new jsPDF('p', 'mm', 'a4');
+        const position = 0;
+        pdf.addImage(contentDataURL, 'PNG', 0, position, imgWidth, imgHeight);
+        pdf.save(`announcement_${announcement.id_announcement}.pdf`);
       });
     }
   }
